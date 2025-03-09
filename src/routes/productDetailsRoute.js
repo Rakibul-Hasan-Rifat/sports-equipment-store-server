@@ -13,10 +13,16 @@ productDetailsRoute
     const result = await client
       .db("sport-equipment-store")
       .collection("equipments")
-      .findOne({_id: new ObjectId(req.params.id)})
-
-      res.send(result)
+      .findOne({ _id: new ObjectId(req.params.id) });
+    res.send(result);
     console.log("request from details route", req.params.id);
+  })
+  .delete(async (req, res) => {
+    const result = await client
+      .db("sport-equipment-store")
+      .collection("equipments")
+      .deleteOne({ _id: new ObjectId(req.params?.id) });
+    res.send(result);
   });
 
 export default productDetailsRoute;
